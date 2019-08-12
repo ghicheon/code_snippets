@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 from scipy.optimize import rosen, rosen_der
 
-N =  10  #XXXXXXXXXXXXXXX
+N =  10  #XXX if you change it, you must  change bounds. there must be a better way?
 dt = 0.05
 
 Lf = 2.67
@@ -388,18 +388,9 @@ def MPCSolve(state,coeffs):
 #               'L-BFGS-B', 'TNC', 'COBYLA', 'SLSQP', 'trust-constr', 'dogleg',
 #               'trust-ncg', 'trust-krylov', 'trust-exact' ]
 
-    #print(len(variables), len(bounds))
-    #sol = minimize(objective,state,method=, \
-
     sol = minimize(objective, x0=variables,method='SLSQP', \
               bounds = bounds , constraints = cons)
     
-    #print("ans=" , sol.x)
-
-    
-
-    #return sol.x[0:8]   #XXXXXXXX_XXXXXXXXXXXXX XXX
-
     return [sol.x[x_start + 1],   sol.x[y_start + 1],
             sol.x[psi_start + 1], sol.x[v_start + 1],
             sol.x[cte_start + 1], sol.x[epsi_start + 1],
